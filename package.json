@@ -6,11 +6,12 @@
   "repository": "git@github.com:MajorTom327/formzilla.git",
   "author": "MajorTom327 <me@valentin-thomas.com>",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "dev": "rollup -c -w",
     "test": "vitest --ui",
+    "lint": "eslint --fix --cache --cache-location ./node_modules/.cache/eslint .",
     "test:ci": "vitest run --coverage"
   },
   "devDependencies": {
@@ -20,7 +21,12 @@
     "@types/jest": "^28.1.4",
     "@types/node": "^18.0.1",
     "@types/react": "^18.0.14",
+    "@typescript-eslint/eslint-plugin": "^5.30.4",
+    "@typescript-eslint/parser": "^5.30.4",
     "@vitest/ui": "^0.17.0",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "rollup": "^2.75.7",
     "ts-node": "^10.8.2",
     "ts-node-dev": "^2.0.0",

@@ -1,19 +1,19 @@
-import typescript from "@rollup/plugin-typescript";
+import typescript from '@rollup/plugin-typescript';
 
 export default [
   // CommonJS
   {
-    input: "src/index.ts",
+    input: 'src/index.ts',
     output: {
-      dir: "./dist",
-      entryFileNames: "index.js",
-      format: "cjs",
+      dir: './dist',
+      entryFileNames: 'index.js',
+      format: 'cjs',
     },
     plugins: [
       typescript({
         declaration: true,
-        declarationDir: "dist",
-        rootDir: "src/",
+        declarationDir: 'dist',
+        rootDir: 'src/',
       }),
     ],
   },

@@ -4,34 +4,13 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: [
-    '@remix-run/eslint-config',
-    '@remix-run/eslint-config/node',
-  ],
+  extends: ['airbnb-base'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-  ],
-  rules: {
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
-    'react/function-component-definition': [1,
-      { namedComponents: 'arrow-function' },
-    ],
-  },
-  overrides: [
-    {
-      files: ["**/*.spec.ts"],
-      rules: {
-        "@typescript-eslint/no-unused-expressions": "off"
-      }
-    }
-  ]
+  plugins: ['@typescript-eslint'],
+  rules: {},
+  ignorePatterns: ['**/dist/**'],
 };
