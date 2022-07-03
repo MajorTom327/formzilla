@@ -1,5 +1,5 @@
 {
-  "name": "formzilla",
+  "name": "@majortom327/formzilla",
   "version": "0.0.1",
   "description": "A form handler for remix",
   "main": "index.js",
@@ -11,7 +11,7 @@
     "build": "rollup -c rollup.config.js",
     "dev": "rollup -c -w",
     "test": "vitest --ui",
-    "test:ci": "vitest run"
+    "test:ci": "vitest run --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
