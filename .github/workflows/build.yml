@@ -48,11 +48,17 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: [build, lint]
 
     if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev') && github.event_name == 'push' }}
 
     steps:
+    - name: Use nodeJS 14.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+          registry-url: 'https://npm.pkg.github.com'
+          cache: 'yarn'
       - name: publish
         run: yarn publish
         env:
