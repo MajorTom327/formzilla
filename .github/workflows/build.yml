@@ -48,7 +48,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    neets: [build]
+    needs: [build]
 
     if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev') && github.event_name == 'push' }}
 
