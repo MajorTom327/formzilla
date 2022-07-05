@@ -1,6 +1,6 @@
 {
   "name": "@majortom327/formzilla",
-  "version": "0.0.0-semantic-release",
+  "version": "0.0.1",
   "description": "A form handler for remix",
   "repository": "git@github.com:MajorTom327/formzilla.git",
   "author": "MajorTom327 <me@valentin-thomas.com>",
@@ -35,7 +35,6 @@
     "eslint": "^8.19.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "husky": "^8.0.1",
     "rollup": "^2.75.7",
     "ts-node": "^10.8.2",
     "ts-node-dev": "^2.0.0",
