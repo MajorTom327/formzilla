@@ -13,8 +13,7 @@
     "dev": "rollup -c -w",
     "test": "vitest --ui",
     "lint": "eslint --fix --cache --cache-location ./node_modules/.cache/eslint .",
-    "test:ci": "vitest run --coverage",
-    "prepare": "husky install"
+    "test:ci": "vitest run --coverage"
   },
   "files": [
     "dist/**/*",
