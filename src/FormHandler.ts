@@ -43,7 +43,19 @@ export class FormHandler<T> {
         reject(result);
       }
       resolve(item);
-    })
+    });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  private getValue(path: string, item?: T): any {
+    if (!item) return null;
+
+    const parts = path.split('.');
+
+    return parts.reduce(
+      (red: any, part) => (red && red[part] ? red[part] : null),
+      item,
+    );
   }
 
   public render(item?: T): React.ReactNode[] {
