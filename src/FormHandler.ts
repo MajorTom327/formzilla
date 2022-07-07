@@ -1,9 +1,10 @@
-import React from "react";
-import FormField from "./FormField";
-import { InputProps } from "./types/InputProps";
+import React from 'react';
+import FormField from './FormField';
+import { InputProps } from './types/InputProps';
 
 export class FormHandler<T> {
   protected fields: FormField[];
+
   protected components: Record<string, React.FC<InputProps>> = {};
 
   constructor(_fields: FormField[]) {
@@ -53,11 +54,11 @@ export class FormHandler<T> {
   private getValue(path: string, item?: T): any {
     if (!item) return null;
 
-    const parts = path.split(".");
+    const parts = path.split('.');
 
     return parts.reduce(
       (red: any, part) => (red && red[part] ? red[part] : null),
-      item
+      item,
     );
   }
 }
