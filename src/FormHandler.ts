@@ -1,14 +1,18 @@
 import React from 'react';
+import { Schema } from 'joi';
 import FormField from './FormField';
 import { InputProps } from './types/InputProps';
 
 export class FormHandler<T> {
   protected fields: FormField[];
 
+  protected schema?: Schema;
+
   protected components: Record<string, React.FC<InputProps>> = {};
 
-  constructor(_fields: FormField[]) {
+  constructor(_fields: FormField[], _schema?: Schema<T>) {
     this.fields = _fields;
+    this.schema = _schema;
   }
 
   protected registerComponent(name: string, component: React.FC<InputProps>) {
@@ -16,15 +20,30 @@ export class FormHandler<T> {
   }
 
   public validate(item: T): Record<string, string> {
-    const errors: Record<string, string> = {};
-    this.fields.forEach((field) => {
-      // @ts-ignore
-      const error = field.validate(item[field.name] as any);
-      if (error) {
-        errors[field.name] = error;
+    if (this.schema) {
+      const result = this.schema?.validate(item, { abortEarly: false });
+
+      if (result.error) {
+        return result.error.details.reduce((red: Record<string, string>, detail) => {
+          const key = detail.context!.key! as string;
+          return {
+            ...red,
+            [key]: detail.message,
+          };
+        }, {});
       }
-    });
-    return errors;
+    }
+    return {};
+  }
+
+  public validateAsync(item: T): Promise<T> {
+    return new Promise((resolve, reject) => {
+      const result = this.validate(item);
+      if (Object.keys(result).length > 0) {
+        reject(result);
+      }
+      resolve(item);
+    })
   }
 
   public render(item?: T): React.ReactNode[] {
@@ -49,17 +68,6 @@ export class FormHandler<T> {
       } as InputProps);
     });
     return [];
-  }
-
-  private getValue(path: string, item?: T): any {
-    if (!item) return null;
-
-    const parts = path.split('.');
-
-    return parts.reduce(
-      (red: any, part) => (red && red[part] ? red[part] : null),
-      item,
-    );
   }
 }
 
