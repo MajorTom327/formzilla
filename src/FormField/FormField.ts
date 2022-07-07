@@ -1,12 +1,9 @@
-import ValidationRule from './ValidationRule';
-
 export type FormFieldProps = {
   name: string;
   label: string;
   placeholder?: string;
   required?: boolean;
   requiredMessage?: string;
-  rules?: ValidationRule[];
   component: string;
   transformer?: (value: any) => any;
   defaultValue?: any;
@@ -24,8 +21,6 @@ export class FormField {
 
   public requiredMessage: string = 'This field is required';
 
-  public rules: ValidationRule[] = [];
-
   public component: string;
 
   public transformer: (value: any) => any;
@@ -36,7 +31,6 @@ export class FormField {
     placeholder,
     required,
     requiredMessage,
-    rules,
     component,
     transformer,
   }: FormFieldProps) {
@@ -48,27 +42,7 @@ export class FormField {
       this.requiredMessage = requiredMessage;
     }
 
-    this.rules = rules || [];
     this.component = component;
     this.transformer = transformer || ((v: any) => v);
-  }
-
-  public validate(value: any): string | null {
-    if (this.required && (!value || value === '')) {
-      return this.requiredMessage;
-    }
-
-    const error: string | null = this.rules.reduce<string | null>((red, rule) => {
-      if (red !== null) return red;
-      if (rule.regex && !rule.regex.test(value)) {
-        return rule.message;
-      }
-      if (rule.f && !rule.f(value)) {
-        return rule.message;
-      }
-      return null;
-    }, null);
-
-    return error;
   }
 }

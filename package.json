@@ -44,7 +44,7 @@
     "vite": "^2.9.13",
     "vitest": "^0.17.0"
   },
-  "peerDependencies": {
+  "dependencies": {
     "joi": "^17.6.0",
     "react": "^18.2.0"
   }
