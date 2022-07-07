@@ -65,17 +65,13 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: build-artifact
-          path:
-            - ./dist
-            - ./package.json
+          path: ./dist
 
       - name: 💾 Cache
         id: cache-build
         uses: actions/cache@v2
         with:
-          path:
-            - ./package.json
-            - ./dist
+          path: ./dist
           key: ${{ github.sha }}
 
 
@@ -88,9 +84,7 @@ jobs:
       - uses: actions/cache@v2
         id: cache-build
         with:
-          path:
-            - ./dist
-            - ./package.json
+          path: ./dist
           key: ${{ github.sha }}
       - name: 🚀 publish
         if: steps.cache-build.outputs.cache-hit != true
