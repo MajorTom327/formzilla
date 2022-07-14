@@ -23,7 +23,7 @@ export class FormField {
 
   public component: string;
 
-  public transformer: (value: any) => any;
+  public transformer: (v: any) => any;
 
   constructor({
     name,

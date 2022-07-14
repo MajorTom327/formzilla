@@ -81,6 +81,20 @@ export class FormHandler<T> {
     });
     return [];
   }
+
+  public parse(item: FormData): T {
+    return this.fields.reduce((acc, { name, transformer }) => {
+      const value = item.get(name);
+      if (value) {
+        const cleanValue: any = transformer ? transformer(value) : value;
+        return {
+          ...acc,
+          [name]: cleanValue,
+        };
+      }
+      return acc;
+    }, {}) as T;
+  }
 }
 
 export default FormHandler;
